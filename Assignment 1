@@ -1,0 +1,115 @@
+#include <iostream>
+using namespace std;
+
+struct node
+{
+    int data;
+    node *next, *prev;
+};
+
+class linkedlist 
+{
+    private:
+    node *head, *tail;
+    public:
+    linkedlist(){           //constructor for setting everything to NULL
+        head = tail = NULL;
+    }
+    void addnode(int d)     //creates the new node to add to the list
+    {
+        node *tmp = new node;
+        tmp-> data = d;
+        tmp-> next = NULL;
+            if (head==NULL)
+            {
+                head = tmp;
+                tail = tmp;
+                tmp = NULL;
+            }
+        tail->next = tmp;
+        tail = tmp;
+    }
+};
+
+class doublelinkedlist
+{   
+    private:
+    node *head, *tail, *prev;
+    public:
+    doublelinkedlist(){     //constructor for setting everything to NULL
+        head = tail = prev = NULL;
+    }
+    void addnodetohead(int d)     //creates the new node to add to the list
+    {
+        node *tmp = new node;
+        tmp-> data = d;
+        tmp-> next = NULL;
+            if (head == NULL)
+            {
+                head = tmp;
+                tail = tmp;
+                prev = tmp;
+                tmp = NULL;
+            }
+         
+    }
+    void addnodetotail(int d)
+    {   
+        if (tail == NULL)
+        {
+            cout<<"Error, List does not exist or is empty"<<endl;
+        }
+        node *tmp = new node;
+        tmp -> next = NULL;
+        tmp -> prev = tail;
+        tail = tmp;
+    }
+};
+
+class circularlinkedlist
+{
+    private:
+    node *head;
+    public:
+    circularlinkedlist(){    //constructor for setting everything to NULL
+    head = NULL;
+    }
+    void addnode(int d)     //creates the new node to add to the list
+    {
+        node *tmp = new node;
+        tmp-> data = d;
+        tmp-> next = NULL;
+    }
+};
+
+class stack
+{ 
+    private:
+    node *head, *tail;
+    public:
+    stack(){
+        head = tail = NULL;     //constructor for setting everything to NULL
+    }
+    void addnode(int d)     //creates the new node to add to the list
+    {
+        node *tmp = new node;
+        tmp-> data = d;
+        tmp-> next = NULL;
+    }
+};
+
+class queue
+{
+    private:
+    node *head, *tail;
+    public:
+    queue(){    //constructor for setting everything to NULL
+        head = tail = NULL;
+    }
+    void addnode(int d)     //creates the new node to add to the list
+    {
+        node *tmp = new node;
+        tmp-> data = d;
+        tmp-> next = NULL;
+    }
+};
