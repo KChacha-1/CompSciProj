@@ -29,6 +29,67 @@ class linkedlist
         tail->next = tmp;
         tail = tmp;
     }
+    ~linkedlist()   //destructor
+    {
+        for (node *tmp = head; tmp!=NULL;)
+        {
+            tmp= head->next; //goes to next
+            delete head;//deletes prev which is head
+            head=tmp;//next is head
+        }
+    }
+    void addnodetohead(int d)     //creates the new node to add to the list
+    {
+        node *tmp = new node;
+        tmp-> data = d;
+        tmp-> next = NULL;
+            if (head == NULL)
+            {
+                head = tmp;
+                tail = tmp;
+                tmp = NULL;
+            }
+    }
+    void addnodetotail(int d)
+    {   
+        if (head == NULL)           //in case list is empty and user tries to add to an empty list
+        cout<<"List is empty is empty"<<endl;
+        
+        else
+        {
+            node *tmp = new node; // for(node *tmp = head; tmp!=NULL;) ||  tmp=tmp->next;
+            tmp->data= d;
+            tail->next=tmp;
+            tmp=tail;
+        }
+
+    }
+    void deletenode(int d)
+    {
+        if (head == NULL)           //in case list is empty and user tries to add to an empty list
+        cout<<"List is empty is empty"<<endl;
+        else if (head == tail)
+        {
+            delete head;
+        }
+        
+    }
+    void deletetail(int d)
+    {
+        if (head == NULL)           //in case list is empty and user tries to add to an empty list
+        cout<<"List is empty is empty"<<endl;
+        else
+        {
+            node *tmp = head;
+         if (tmp->next!=tail)
+                tmp ->next;
+         if (tmp->next =tail)
+            {
+                delete tail;
+                tmp = tail;
+            }
+        }
+    }
 };
 
 class doublelinkedlist
