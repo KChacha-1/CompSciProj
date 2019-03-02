@@ -15,6 +15,15 @@ class linkedlist
     linkedlist(){           //constructor for setting everything to NULL
         head = tail = NULL;
     }
+        ~linkedlist()   //destructor
+    {
+        for (node *tmp = head; tmp!=NULL;)
+        {
+            tmp= head->next; //goes to next
+            delete head;//deletes prev which is head
+            head=tmp;//next is head
+        }
+    }
     void addnode(int d)     //creates the new node to add to the list
     {
         node *tmp = new node;
@@ -28,15 +37,6 @@ class linkedlist
             }
         tail->next = tmp;
         tail = tmp;
-    }
-    ~linkedlist()   //destructor
-    {
-        for (node *tmp = head; tmp!=NULL;)
-        {
-            tmp= head->next; //goes to next
-            delete head;//deletes prev which is head
-            head=tmp;//next is head
-        }
     }
     void addnodetohead(int d)     //creates the new node to add to the list
     {
