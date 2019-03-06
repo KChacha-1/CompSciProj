@@ -1,0 +1,50 @@
+Assignment 1: Data Structures:
+In this assignment you will be displaying knowledge of the data structures covered so far in class by
+building each data structure and demoing it. Do not use the STL library for your containers. Everything
+must be built from scratch, except the random number generator. Comment EVERYTHING. Industry
+code is built on good comments, and if your work is hard to read, you’ll be losing points. I will be
+compiling everything in G++, and if it doesn’t work, I will compile it in the IDE you used. If you do not
+submit which IDE you used, and you submit code that doesn’t work you will lose points. 
+
+Build the following data structures:
+• Linked List
+• Doubly Linked List
+• Circular Linked List
+• Stack
+• Queue
+
+Lists should contain:
+• Insertion/Removal at all locations (Front, back, in between)
+• Print/Display
+• Sort (low->high and high->low)
+• Search (Contains, position, and how many instances as three separate functions)
+• Clear/empty
+• Size (if empty, print that it’s empty)
+
+Stack and Queue should contain
+• Insertion (Push/Enqueue)
+• Deletion (Pop/Dequeue)
+• Print/Display
+• Sort (Stacks: Value or Color, Queue: Alphabetical)
+• Search (Contains, position, and how many instances as three separate functions)
+• Clear/empty
+• Size (if empty, print that it’s empty)
+
+Each data structure should contain a set of overloaded operators (Respect innate object behavior):
+• ‘+’ (addition) that allows you to add two objects of the same type together.
+• ‘++’ (increment) that adds a new node to the object and then fills it with a random value.
+• ‘—’ (decrement) that deletes a node from the object. 
+
+Each data structure should behave appropriately.
+
+You will be creating a main() that demos each of the objects:
+• Fill each list object with 100 random numbers, then sort and print those numbers in both low to
+high, and high to low.
+• Fill the stack with 52 values representing cards in a deck, then print a 7-card hand.
+• Read in a paragraph of at least 100 words from a file, sort it by alphabetical order and print it.
+• After each print, empty the container and print it again to show it’s empty. 
+
+EXTRA CREDIT:
+• Implement a shuffle function for each list container.
+• Use Recursion in your shuffle implementation.
+• Implement exception handling. 
