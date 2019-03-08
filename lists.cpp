@@ -58,7 +58,7 @@ class linkedlist
     void addnodetotail(int d)
     {   
         if (head == NULL)           //in case list is empty and user tries to add to an empty list
-        cout<<"List is empty is empty"<<endl;
+        listempty();
         
         else
         {
@@ -72,7 +72,7 @@ class linkedlist
     void deletenode(int d)
     {
         if (head == NULL)           //in case list is empty and user tries to add to an empty list
-        cout<<"List is empty is empty"<<endl;
+        listempty();
         else if (head == tail)
         {
             delete head;
@@ -82,7 +82,7 @@ class linkedlist
     void deletetail(int d)
     {
         if (head == NULL)           //in case list is empty and user tries to add to an empty list
-        cout<<"List is empty is empty"<<endl;
+        listempty();
         else
         {
             node *tmp = head;
@@ -194,24 +194,86 @@ class linkedlist
             cout<<"====================================================="<<endl;
                 if(position>listlength)
                 {
-                    cout<<"error"<<endl;
+                    error();
                 }
                 else
                 {
-                        while(position!=0 && tmp2!=NULL)//for (position<=listlength; position>0 ; position--)
+                        for (position<=listlength; position!=2 ; position--)
                         {   
-                            
-                                tmp2= tmp2->next;
-                                position--;
+                                tmp = tmp->next;
+                                tmp2 = tmp2->next;
+                                //position--;
                             
                         }
-                   // tmp=tmp2;
-                    tmp2->next= tmp3;
-                    tmp3->next=tmp;
+                   tmp->next =tmp3;
+                   tmp3->next = tmp2;
             
         }
             
         }
+    }
+    void search(int d)
+    {   
+        pos(d);
+        
+    }
+
+    void pos(int d)
+    {
+        
+        node *tmp2 = head;
+        int pos = 1;
+            while (tmp2!=NULL && tmp2->data != d  )
+            {
+                tmp2=tmp2->next;
+                pos++;
+            }
+            if(tmp2==NULL)
+            {
+                cout<<"data not found in list"<<endl;
+            }
+            else  
+             {  
+                 cout<<"data found in list position "<<pos<<endl;
+             } 
+    }
+    void instances(int d)
+    {
+        if(head==NULL)
+        {
+            listempty();
+        }
+        else
+        {
+            node *tmp = head;
+            //int listsize = count();
+            int itterator = 0;
+            while (tmp!=NULL && tmp->data !=d)
+            {
+                itterator++;
+                tmp = tmp->next;
+                
+            }
+            //itterator = listsize-itterator;
+            //while(tmp!=NULL && tmp->data = d)
+            //{   
+                 
+                    
+            //        tmp= tmp->next;
+            //        itterator++;
+                
+            //}
+            cout<<"The value occurs "<< itterator << " times "<<endl;
+        }
+        
+    }
+    void error()
+    {
+        cout<<"error"<<endl;
+    }
+    void listempty()
+    {
+       cout<<"List is empty "<<endl;
     }
 };
 
@@ -312,13 +374,10 @@ int main()
     a.count();
     a.printlist();
     a.size();
-    a.insertinbetween(34);
-    a.count();
-    a.printlist();
-    a.size();
-    
-    
-    
-   
-    
+    //a.insertinbetween(34);
+    //a.count();
+    //a.printlist();
+    //a.size();
+    a.search(9);
+    a.instances(123);
 }
