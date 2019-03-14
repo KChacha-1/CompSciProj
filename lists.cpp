@@ -99,7 +99,7 @@ class linkedlist
     {   
         if(head==NULL)
         {
-            //cout<<"List empty, add some values"<<endl; //why you try to break :(
+            listempty(); //cout<<"List empty, add some values"<<endl; //why you try to break :(
         }
         else
         {
@@ -138,15 +138,15 @@ class linkedlist
            if(tmp->data>=tmp2->data)
            {
                swap(tmp->data, tmp2->data);
-               tmp= tmp->next;
-               tmp2=tmp2->next;
+           //    tmp= tmp->next;
+             //  tmp2=tmp2->next;
            }
-           else
-           {
+          // else
+          // {
               
               tmp=tmp->next;
               tmp2=tmp2->next;
-           }
+           //}
            
        }
     }
@@ -162,15 +162,15 @@ class linkedlist
            if(tmp->data<=tmp2->data)
            {
                swap(tmp->data, tmp2->data);
-               tmp= tmp->next;
-               tmp2=tmp2->next;
+               //tmp= tmp->next; 
+               //tmp2=tmp2->next;
            }
-           else
-           {
+          // else
+           //{
               
               tmp=tmp->next;
               tmp2=tmp2->next;
-           }
+           //}
            
        }
     }
@@ -215,27 +215,49 @@ class linkedlist
     void search(int d)
     {   
         pos(d);
+        instances(d);
         
     }
 
     void pos(int d)
     {
-        
-        node *tmp2 = head;
-        int pos = 1;
-            while (tmp2!=NULL && tmp2->data != d  )
+        int instances = getinstance(d);
+
+        if (instances <= 0)
+        {
+            cout << "data not found in list" << endl;
+        }
+        else if (instances == 1)
+        {
+            node *tmp2 = head;
+            int pos = 1;
+
+            while (tmp2 != NULL && tmp2->data != d)
             {
-                tmp2=tmp2->next;
+                tmp2 = tmp2->next;
                 pos++;
             }
-            if(tmp2==NULL)
+            cout << "data found in list position " << pos << endl;
+        }
+        else
+        {
+            node *tmp2 = head;
+            int pos = 1;
+
+            while (tmp2 != NULL && instances != 0)
             {
-                cout<<"data not found in list"<<endl;
+                if (tmp2->data == d)
+                {
+                    instances--;
+                    if (instances > 0)
+                        cout << "Found in position "<<pos;
+                    else
+                        cout << " and " << pos << endl;
+                }
+                tmp2 = tmp2->next;
+                pos++;
             }
-            else  
-             {  
-                 cout<<"data found in list position "<<pos<<endl;
-             } 
+        }
     }
     void instances(int d)
     {
@@ -248,10 +270,16 @@ class linkedlist
             node *tmp = head;
             //int listsize = count();
             int itterator = 0;
-            while (tmp!=NULL && tmp->data !=d)
-            {
-                itterator++;
+            while (tmp!=NULL )//&& tmp->data !=d)
+            {   if(tmp->data !=d)
+                {
                 tmp = tmp->next;
+                }
+                else
+                {
+                   itterator++;
+                   tmp=tmp->next;
+                }
                 
             }
             //itterator = listsize-itterator;
@@ -265,7 +293,25 @@ class linkedlist
             //}
             cout<<"The value occurs "<< itterator << " times "<<endl;
         }
+    }
+    int getinstance(int d)
+    {
         
+            node *tmp = head;
+            //int listsize = count();
+            int itterator = 0;
+            while (tmp!=NULL )//&& tmp->data !=d)
+            {   if(tmp->data !=d)
+                {
+                tmp = tmp->next;
+                }
+                else
+                {
+                   itterator++;
+                   tmp=tmp->next;
+                }
+            }
+        return (itterator);
     }
     void error()
     {
@@ -275,7 +321,16 @@ class linkedlist
     {
        cout<<"List is empty "<<endl;
     }
+    friend linkedlist operator+(const linkedlist& x , const linkedlist& y)
+    {
+       
+    }
 };
+linkedlist operator+(const linkedlist& x , const linkedlist& y)
+{
+    return linkedlist(x + y);
+}
+
 
 class doublelinkedlist
 {   
@@ -378,6 +433,16 @@ int main()
     //a.count();
     //a.printlist();
     //a.size();
-    a.search(9);
-    a.instances(123);
+    a.pos(123);
+    a.ascendingsort();
+    a.printlist();
+    //a.instances(123);
+    linkedlist b;
+    b.addnode(33);
+    b.addnode(45);
+    b.addnode(65);
+    b.addnode(87);
+    linkedlist c;
+    c= a+b;
+    c.printlist();
 }
