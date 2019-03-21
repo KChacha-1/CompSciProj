@@ -4,7 +4,7 @@ using namespace std;
 struct node
 {
     int data;
-    node *next, *prev;
+    node *next, *pre;
 };
 
 class linkedlist 
@@ -20,7 +20,7 @@ class linkedlist
         for (node *tmp = head; tmp!=NULL;)
         {
             tmp= head->next; //goes to next
-            delete head;//deletes prev which is head
+            delete head;//deletes pre which is head
             head=tmp;//next is head
         }
     }
@@ -58,7 +58,7 @@ class linkedlist
     void addnodetotail(int d)
     {   
         if (head == NULL)           //in case list is empty and user tries to add to an empty list
-        listempty();
+        listisempty();
         
         else
         {
@@ -72,7 +72,7 @@ class linkedlist
     void deletenode(int d)
     {
         if (head == NULL)           //in case list is empty and user tries to add to an empty list
-        listempty();
+        listisempty();
         else if (head == tail)
         {
             delete head;
@@ -82,7 +82,7 @@ class linkedlist
     void deletetail(int d)
     {
         if (head == NULL)           //in case list is empty and user tries to add to an empty list
-        listempty();
+        listisempty();
         else
         {
             node *tmp = head;
@@ -99,7 +99,7 @@ class linkedlist
     {   
         if(head==NULL)
         {
-            listempty(); //cout<<"List empty, add some values"<<endl; //why you try to break :(
+            listisempty(); //cout<<"List empty, add some values"<<endl; //why you try to break :(
         }
         else
         {
@@ -263,7 +263,8 @@ class linkedlist
     {
         if(head==NULL)
         {
-            listempty();
+            listisempty();
+    
         }
         else
         {
@@ -298,7 +299,7 @@ class linkedlist
     {
         
             node *tmp = head;
-            //int listsize = count();
+         
             int itterator = 0;
             while (tmp!=NULL )//&& tmp->data !=d)
             {   if(tmp->data !=d)
@@ -313,43 +314,44 @@ class linkedlist
             }
         return (itterator);
     }
+    void operator + (linkedlist &other)
+    {
+        node *tmp = this->tail;
+       tmp->next = other.head;
+       other.head = NULL;
+        this->tail = other.tail;
+
+    }
     void error()
     {
         cout<<"error"<<endl;
     }
-    void listempty()
+    void listisempty()
     {
        cout<<"List is empty "<<endl;
     }
-    friend linkedlist operator+(const linkedlist& x , const linkedlist& y)
-    {
-       
-    }
+    
 };
-linkedlist operator+(const linkedlist& x , const linkedlist& y)
-{
-    return linkedlist(x + y);
-}
 
 
 class doublelinkedlist
 {   
     private:
-    node *head, *tail, *prev;
+    node *head, *tail;
     public:
     doublelinkedlist(){     //constructor for setting everything to NULL
-        head = tail = prev = NULL;
+        head = tail = NULL;
     }
     void addnodetohead(int d)     //creates the new node to add to the list
     {
         node *tmp = new node;
         tmp-> data = d;
         tmp-> next = NULL;
+        tmp-> pre = NULL;
             if (head == NULL)
             {
                 head = tmp;
                 tail = tmp;
-                prev = tmp;
                 tmp = NULL;
             }
          
@@ -362,8 +364,51 @@ class doublelinkedlist
         }
         node *tmp = new node;
         tmp -> next = NULL;
-        tmp -> prev = tail;
+        tmp -> pre = tail;
         tail = tmp;
+    }
+    void addinbetween(int d)
+    {
+        if (head==NULL)
+        {
+            listisempty();
+        }
+        else
+        {
+            
+        }
+        
+    }
+    int count()// counts the nodes in the list
+    {   
+        if(head==NULL)
+        {
+            listisempty(); //cout<<"List empty, add some values"<<endl; //why you try to break :(
+        }
+        else
+        {
+            node *tmp = head; //starts at the head 
+            int length = 0; // the varible that holds the length value
+            while(tmp!=NULL)
+            {
+                length++;
+                tmp= tmp->next;
+            }
+            return(length);
+        }
+    }
+    void size()
+    {   int size = 0;
+        size = count();
+        cout<<"size of list is "<<size<<endl;
+    }   
+     void error()
+    {
+        cout<<"error"<<endl;
+    }
+    void listisempty()
+    {
+       cout<<"List is empty "<<endl;
     }
 };
 
@@ -386,16 +431,38 @@ class circularlinkedlist
 class stack
 { 
     private:
-    node *head, *tail;
+    node *head, *tail, *pre;
     public:
     stack(){
-        head = tail = NULL;     //constructor for setting everything to NULL
+        head = tail = pre= NULL;     //constructor for setting everything to NULL
     }
-    void addnode(int d)     //creates the new node to add to the list
+    void push(int d)     //creates the new node to add to the list
     {
+        if(head=NULL)
+        {
         node *tmp = new node;
         tmp-> data = d;
         tmp-> next = NULL;
+        head= tmp;
+        tail = tmp;
+        pre = tmp;
+        }
+        else
+       { 
+        node *tmp = new node;
+        tmp-> data = d;
+        tmp-> next = NULL;
+        tmp -> pre = tail;
+        tail = tmp;
+       }
+    }
+    void pop()
+    {
+        node *tmp = tail;
+        tail->pre = tmp;
+        delete tail;
+        tmp = tail;
+        
     }
 };
 
@@ -442,7 +509,13 @@ int main()
     b.addnode(45);
     b.addnode(65);
     b.addnode(87);
-    linkedlist c;
-    c= a+b;
-    c.printlist();
+    a+b;
+    cout<<"================================================="<<endl;
+    a.printlist();
+    stack x;
+    x.push(3);
+    x.push(4);
+    x.push(6);
+    x.push(8);
+
 }
