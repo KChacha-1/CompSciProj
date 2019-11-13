@@ -1,0 +1,189 @@
+#include <iostream>
+#include <semaphore.h>
+#include <mutex>
+#include <cstdlib>
+using namespace std;
+#define MAX_THREADS = 5; 
+
+int r1pc,r2pc,r3pc,w1pc,w2pc;
+sem_t p;
+sem_t v;
+int s=1;
+void r1()
+{
+    switch (r1pc)
+    {
+    case 0:
+    {
+        r1pc++;
+        break;
+    }
+    case 1:
+    {
+        cout<<"im r1 "<<endl;
+        r1pc++;
+        break;
+    }
+    case 2: 
+    {
+    {
+        while(s<=0)
+        s--;
+
+    }
+    break;
+    }
+    
+    default:
+        break;
+    }
+}
+//5 processes are characterized by 3 readers and 2 writers.
+
+/*up to 2 reader inside the critcal section without the writers
+implement binary and counting semaphore
+uses switch statement 
+    
+Up to two reader processes can be inside their critical section without any writer process. For
+writer process to go into its critical section, it should check whether there is any reader or writer
+process is in the critical section.
+    Critical section in this problem is reading shared data buffer for reader and updating shared data
+buffer for writer processes. It is up to you to implement any shared data for readers and writers
+but you have to specify clearly following things in your sample output.
+• When reader or writer enters its critical section, it has to report whether there are any reader(s)
+or writer(s) other than itself.
+• You may print out the data you read or write when you implement real buffer. (Optional)
+• You have to print out “Panic Messages” when the rules behind this semi critical section problem
+are not observed.
+    In your main program, you run the random number generator function to choose process to
+execute. The chosen process starts (resumes) execution and after one instruction, it will be
+returned. (You should force each process run exactly one instruction then returns and waiting for
+its turn.)
+    You can implement this using switch statement in C or C++. Do not use any multi-threading nor
+mutex feature from programming language. Each process is one big switch statement and will be
+returned after each instruction. You need to keep track of program counter of each process to
+resume at the right place once it will be chosen to run by keeping global counter variable per
+process.
+    Subproject 1: You should implement binary and counting semaphores as studied in the class for
+this project.
+    Subproject 2: You should implement test and set operation as studied in the class for this project.
+*/
+
+/* 
+for (int i=0; i<=10000:i++)  //yes he want this to run 10000 times 
+{
+    int pid = rand()%5
+        switch(pid)
+        case 0: r1()
+        case 1: r2()
+        case 2: r3()
+        case 3: w1()
+        case 4: w2()
+}
+
+ALL GLOBAL VARIBLES
+
+int r1pc, r2pc, r3pc, w1pc, w2pc;
+
+int r1()
+{
+    switch (r1pc):
+    //Non critical section
+    case 0: _____; r1pc++; break();
+    case 1: cout<<"im r1"; r1pc++; break();       
+
+    //for subproject 1 and 2, this changes from binary and counting semaphore into test and set
+    case 2: p(s){
+        while(s<=0)
+        s--;
+
+    }
+    case 3: v(s){
+        s++
+    }
+    case 4: void panic ()
+    {
+        cout<<"Panic"<<endl;
+    }
+
+    //Critical section 
+    case 5:                     
+    case 6:
+    //cout and check if the code is running by outputting what its doing in the critical section 
+}
+int r2()
+{
+
+}
+int r3()
+{
+
+}
+int w1()
+{
+
+}
+int w2
+{
+
+}
+
+Notes
+
+writer
+ncs
+p(wrt);
+cs 
+v(wrt)
+ncs
+
+
+reader
+while (true)
+{
+wait (mutex)
+readcount++;
+if (readcount ==0)
+signal(mutex)
+
+    //reading is being preformwed
+
+wait (mutex)
+readcount--;
+if (readcount==0)signal(wrt);
+signal(mutex);
+}
+
+// Redone 
+
+int r1pc=0;
+
+int r1()
+    switch(r1pc)
+    {
+        case 0: cout<<"Im process 1 and im in the ncs"; r1pc++; break;
+        case 1: cout<<Im process 1 and i see # of readers and # of writers in the critical section"; r1pc++; break;
+        case 2: int i=0; r1pc++;break;
+        case 3: if(int i<=100) r1pc++; else r1pc=5; break;
+        case 4: i++; r1pc--: break
+        case 5: cout<<" Im reader 1trying to enter the critcial section "
+        
+        case 6: p(s); r1pc++; break 
+        case 7
+
+        case 8: critical section 
+        case 9:
+    }
+
+
+int main()
+{
+    for (int i=0; i<=10000; i++)
+    pid = rand%5;
+    switch(pid):
+    case 0; r1() ; break;
+    case 1: r2() ; break; 
+
+}
+
+*/
